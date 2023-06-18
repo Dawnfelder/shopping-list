@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 16px;
+            font-family: 'kalam', cursive;
+            background-image: url(wooden-table.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+
+        }
+
+        .wrapper {
+            width: 90%;
+            margin: auto;
+            display: flex;
+        }
+
+        .shopping-list {
+            background-color: rgb(232, 220, 184);
+            width: 600px;
+            min-height: 100vh;
+            margin: auto;
+            box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.5);
+        }
+
+        .shopping-list h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-top: 1em;
+        }
+
+        .shopping-list i {
+            font-size: 2rem;
+        }
+
+        .user-input-container {
+            text-align: center;
+        }
+
+        .shopping-list input {
+            font-family: inherit;
+            background: inherit;
+            font-size: 1.5rem;
+            outline: 0;
+            border: 0;
+            border-bottom: 3px solid;
+            width: 60%;
+        }
+
+        .items-container h2 {
+            margin-left: 50px;
+            margin-right: 10px;
+            margin-top: 15px;
+            font-size: 2rem;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="shopping-list">
+            <h1>My shopping list</h1>
+            <br><br>
+            <div class="user-input-container">
+                <i id="erase" class="fa-solid fa-pen"></i>
+                <input id="user-input" type="text">
+            </div>
+            <div class="items-container"></div>
+        </div>
+    </div>
+
+    <script>
+        const shoppingList = document.getElementsByClassName("shopping-list")[0];
+        const itemsContainer = document.getElementsByClassName("items-container")[0];
+        const userInput = document.getElementById("user-input");
+        const pen = document.getElementById("erase");
+
+        userInput.addEventListener('keydown', function(event){
+            if(event.key == 'Enter')
+            addItem();
+        })
+
+        function addItem() {
+            const item = document.createElement("h2");
+            item.innerHTML = "- " + userInput.value;
+            itemsContainer.appendChild(item);
+            userInput.value = "";
+            item.addEventListener('click', function(){
+                item.style.textDecoration = "line-through";
+            })
+        }
+
+        pen.addEventListener('click', function(){
+            itemsContainer.innerHTML = "";
+        })
+
+    </script>
+</body>
+
+</html>
